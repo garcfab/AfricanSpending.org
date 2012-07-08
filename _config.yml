@@ -1,0 +1,6 @@
+pygments: true
+auto: true
+
+title: African Spending
+openspendingjs: '/js/openspendingjs'
+url: http://africanspending.org

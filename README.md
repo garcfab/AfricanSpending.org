@@ -1,2 +1,2 @@
-AfricanSpending.org
-===================
+africaspending.org
+==================

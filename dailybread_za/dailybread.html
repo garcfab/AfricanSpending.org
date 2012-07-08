@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WDMMG Daily Bread</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css">
+    <!-- link rel="stylesheet" href="http://wheredoesmymoneygo.org/wp-content/themes/wdmmg/wdmmg.css" -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/dailybread.css">
+	
+	<script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="http://openspending.org/static/openspendingjs/lib/vendor/base64.js"></script>
+    <script src="http://openspending.org/static/openspendingjs/lib/vendor/underscore.js"></script>
+    <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/vendor/accounting.min.js"></script>
+    <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/boot.js"></script>
+    <script defer="defer">
+      OpenSpending.scriptRoot = "http://openspending.org/static/openspendingjs";
+      OpenSpending.localeGroupSeparator = ",";
+      OpenSpending.localeDecimalSeparator = ".";
+    </script>
+    <script type="text/javascript" src="http://openspending.org/static/openspendingjs/lib/utils/utils.js"></script>
+	  <script src="http://openspending.org/static/openspendingjs/lib/vendor/raphael-min.js"></script>
+	  <script src="http://openspending.org/static/openspendingjs/lib/aggregator.js"></script>
+
+    <script src="js/cofog.js"></script>
+    <script src="js/dailybread.js"></script>
+    <style>
+      #dailybread {
+        width: 100%;
+        margin: 0 auto;
+      }
+		body{font-size:100%; padding-top: 70px;}
+    </style>
+    <script>
+    (function ($) {
+      $(function () {
+        var db = new OpenSpending.DailyBread($('#dailybread'),
+          {
+            minIncome: 70000,
+            maxIncome: 500000,
+            defaultIncome:  92200,
+            currency: 'ZAR',
+            taxmanApi: 'http://taxman.openspending.org/za'
+          });
+        new OpenSpending.Aggregator({
+              apiUrl: 'http://openspending.org/api',
+              //localApiCache: 'aggregate.json',
+              dataset: 'south-african-national-gov-budget-2012-13',
+              drilldowns: ['category', 'subcategory'],
+              cuts: ['year:2012'],
+              rootNodeLabel: 'Total',
+              callback: function(data) {
+                db.setDataFromAggregator(data, ['unknown']);
+                db.setIconLookup(function(name) {
+                  var style = OpenSpending.Styles.Cofog[name];
+                  if (style != undefined) {
+                    return style['icon'];
+                  }
+                  return 'icons/unknown.svg';
+                });
+                db.draw();
+              }
+            });
+        })
+      })(jQuery)
+    </script>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container">
+
+	      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
+
+	      <!-- Be sure to leave the brand out there if you want it shown -->
+	      <a class="brand pull-center" href="#">ZA Daily Bread <span style="font-size:13px;">| Your daily contribution to the ZA budget.</span></a>
+
+	      <!-- Everything you want hidden at 940px or less, place within here -->
+	      <div class="nav-collapse">
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+	<div class="container">
+	<div id="dailybread">
+		<div id="db-header">
+			<h1>Where Does South Africa's Money Go?</h1>
+		</div>
+		<div id="db-topbar" class="layout-row layout-3col-15-70-15">
+			<div id="db-salary" class="layout-col layout-col-1">
+				<h2>Salary</h2>
+				<p>22,000</p>
+			</div>
+			<div id="db-slider" class="layout-col layout-col-2">
+				<h2>Select your annual salary</h2>
+				<div class="wdmmg-slider"></div>
+			</div>
+			<div id="db-tax" class="layout-col layout-col-3">
+				<h2>Your tax</h2>
+				<p>£31.12</p>
+			</div>
+		</div><!-- /#db-topbar -->
+	</div><!-- /#dailybread -->
+	<iframe width='940' height='600' src='http://openspending.org/kenya-budget/embed?widget=bubbletree&state=%7B%22drilldowns%22%3A%5B%22MTEF-Sector%22%5D%2C%22year%22%3A2011%2C%22cuts%22%3A%7B%7D%7D&width=940&height=600' frameborder='0'></iframe>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+---
+layout: default
+title: Home
+section: home
+---
+
+<style>
+	#country-name {
+		margin-bottom: 0;
+		margin-left: 75px;
+	}
+</style>
+		
+<h3 style="text-align:center;">A great tool to keep track of government finances all around Africa.
+	<a class="btn btn-large" href="/how-to-use">How To Use</a></h3>
+
+<table class="table table-bordered visible-desktop" style="width:100%; border:0;" align="center" ><tr><thead>
+	<th style="width:600px; border:0;"><div id="afroKart"></div></th>
+	<th style="border:0; vertical-align:middle;">
+		<div class="well" style="">
+			<p style="margin-bottom:0; float:left;">Country / </p>
+			<p id="country-name"></p>
+		</div>
+	</th>
+</thead></tr></table>
+		
+		<script>
+		$(function() {
+			var selectedCountry = null;
+			
+			map = $K.map('#afroKart', 500, 500);
+			
+			var setPathCol = function(path, selected, border){
+				path.realFill = path.svgPath.attrs.fill;
+				path.svgPath.attr({'fill': selected ? '#df3e67':'#199a7b'});//'#cc0033' : '#007a5e'});
+				return path;
+			}
+			var setCountryCol = function(country, col, border){
+				var path = map.getLayerPath('countries', country);
+				return setPathCol(path, col, border);
+			}
+			
+			map.loadMap('maps/africa_500.svg', function(){
+				map.loadStyles('/css/map_styles.css', function() {
+					map.addLayer({
+						id: 'countries',
+						key: 'country',
+					});
+					
+					var layer = map.getLayer('countries');
+                    for(var i=0;i<layer.paths.length;i++){
+                        var path = layer.paths[i];
+                        //setPathCol(path, false, false);
+                        path.svgPath.attr({'fill': '#199a7b'});
+                        path.svgPath.attr({'stroke-width': 1});
+                        path.svgPath.attr({'stroke': '#fff'});
+                    }
+					
+					map.tooltips({
+						layer: 'countries',
+						content: function(data) { return data.country;},
+						style: { name: 'light' }
+					});
+
+					map.onLayerEvent('click', function(data) {
+						document.getElementById("country-name").innerHTML=data.country;
+						if (selectedCountry!=null){
+							var path = setCountryCol(selectedCountry, false, false);
+							path.svgPath.attr({'stroke-width': 1});
+						}
+						selectedCountry = data.country;
+					});
+					map.onLayerEvent('mouseover', function(data) {
+						setCountryCol(data.country, true, false);
+					});
+					map.onLayerEvent('mouseout', function(data) {
+						if(data.country!=selectedCountry){
+							setCountryCol(data.country, false, false);
+						}
+					});
+							
+				});
+			});
+		});
+		</script>
+		
+		<script>
+			(function ($) {
+				window.qTipConfig = { style: { name: 'light', tip: true },
+				position: { corner: { target: 'bottomMiddle', tooltip: 'topMiddle' }}};
+				$('a[title]').qtip(qTipConfig);
+			}(jQuery));
+		</script>
+		
+		<!-- Analytics
+		================================================== -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-32175814-1']);
+			_gaq.push(['_trackPageview']);
+			
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</body>
+</html>
