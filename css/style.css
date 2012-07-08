@@ -7,6 +7,10 @@ Company: Open Institute [http://www.openinstitute.com]
 
 */
 
+.navbar {
+	z-index: 5 !important;
+}
+
 button.close {
 	padding: 0;
 	cursor: pointer;
@@ -85,6 +89,4 @@ button.close {
 }
 	.db-area-value{
 		padding-top:5px;
-	}
-
-		
+	}	
