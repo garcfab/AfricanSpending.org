@@ -24,86 +24,62 @@ section: home
 	</th>
 </thead></tr></table>
 		
-		<script>
-		$(function() {
-			var selectedCountry = null;
+<script type="text/javascript">
+	$(function() {
+		var selectedCountry = null;
 			
-			map = $K.map('#afroKart', 500, 500);
+		map = $K.map('#afroKart', 500, 500);
 			
-			var setPathCol = function(path, selected, border){
-				path.realFill = path.svgPath.attrs.fill;
-				path.svgPath.attr({'fill': selected ? '#df3e67':'#199a7b'});//'#cc0033' : '#007a5e'});
-				return path;
-			}
-			var setCountryCol = function(country, col, border){
-				var path = map.getLayerPath('countries', country);
-				return setPathCol(path, col, border);
-			}
+		var setPathCol = function(path, selected, border){
+			path.realFill = path.svgPath.attrs.fill;
+			path.svgPath.attr({'fill': selected ? '#df3e67':'#199a7b'});//'#cc0033' : '#007a5e'});
+			return path;
+		}
+		var setCountryCol = function(country, col, border){
+			var path = map.getLayerPath('countries', country);
+			return setPathCol(path, col, border);
+		}
 			
-			map.loadMap('maps/africa_500.svg', function(){
-				map.loadStyles('/css/map_styles.css', function() {
-					map.addLayer({
-						id: 'countries',
-						key: 'country',
-					});
-					
-					var layer = map.getLayer('countries');
-                    for(var i=0;i<layer.paths.length;i++){
-                        var path = layer.paths[i];
-                        //setPathCol(path, false, false);
-                        path.svgPath.attr({'fill': '#199a7b'});
-                        path.svgPath.attr({'stroke-width': 1});
-                        path.svgPath.attr({'stroke': '#fff'});
-                    }
-					
-					map.tooltips({
-						layer: 'countries',
-						content: function(data) { return data.country;},
-						style: { name: 'light' }
-					});
-
-					map.onLayerEvent('click', function(data) {
-						document.getElementById("country-name").innerHTML=data.country;
-						if (selectedCountry!=null){
-							var path = setCountryCol(selectedCountry, false, false);
-							path.svgPath.attr({'stroke-width': 1});
-						}
-						selectedCountry = data.country;
-					});
-					map.onLayerEvent('mouseover', function(data) {
-						setCountryCol(data.country, true, false);
-					});
-					map.onLayerEvent('mouseout', function(data) {
-						if(data.country!=selectedCountry){
-							setCountryCol(data.country, false, false);
-						}
-					});
-							
+		map.loadMap('maps/africa_500.svg', function(){
+			map.loadStyles('/css/map_styles.css', function() {
+				map.addLayer({
+					id: 'countries',
+					key: 'country',
 				});
+					
+				var layer = map.getLayer('countries');
+				for(var i=0;i<layer.paths.length;i++){
+					var path = layer.paths[i];
+					//setPathCol(path, false, false);
+					path.svgPath.attr({'fill': '#199a7b'});
+					path.svgPath.attr({'stroke-width': 1});
+					path.svgPath.attr({'stroke': '#fff'});
+				}
+				
+				map.tooltips({
+					layer: 'countries',
+					content: function(data) { return data.country;},
+					style: { name: 'light' }
+				});
+
+				map.onLayerEvent('click', function(data) {
+					document.getElementById("country-name").innerHTML=data.country;
+					if (selectedCountry!=null){
+						var path = setCountryCol(selectedCountry, false, false);
+						path.svgPath.attr({'stroke-width': 1});
+					}
+					selectedCountry = data.country;
+				});
+				map.onLayerEvent('mouseover', function(data) {
+					setCountryCol(data.country, true, false);
+				});
+				map.onLayerEvent('mouseout', function(data) {
+					if(data.country!=selectedCountry){
+						setCountryCol(data.country, false, false);
+					}
+				});
+							
 			});
 		});
-		</script>
-		
-		<script>
-			(function ($) {
-				window.qTipConfig = { style: { name: 'light', tip: true },
-				position: { corner: { target: 'bottomMiddle', tooltip: 'topMiddle' }}};
-				$('a[title]').qtip(qTipConfig);
-			}(jQuery));
-		</script>
-		
-		<!-- Analytics
-		================================================== -->
-		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-32175814-1']);
-			_gaq.push(['_trackPageview']);
-			
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
-	</body>
-</html>
+	});
+</script>
