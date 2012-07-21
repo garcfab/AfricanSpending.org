@@ -7,15 +7,44 @@ index: active
 		
 
 
-<div class="well" style="height:500px;">
+<div class="well" id="afrokart_1">
+	<div class="row">
+		<div class="span4" style="text-align:center; float:right;">
+			<p class="lead" >A great tool to keep track of government finances all around Africa.
+			<a class="btn" data-toggle="modal" href="#howtouse">How To Use</a></p>
+		</div>
 
-	<div class="span4" style="text-align:center; float:right;">
-		<p class="lead" >A great tool to keep track of government finances all around Africa.
-		<a class="btn" href="/how-to-use">How To Use</a></p>
+		<!-- How To Use -->
+		<div class="modal hide fade" id="howtouse">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>How To Use</h3>
+			</div>
+			<div class="modal-body">
+				<p>One fine body…</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+			</div>
+		</div>
+
+		<div class="span7 hidden-phone" style="position:relative; top:-20px; right:-130px;">
+			<div id="afroKart" style="display:inline-block;"></div>
+		</div>
 	</div>
 
-	<div class="span7 hidden-phone" style="position:relative; top:-90px; left:-90px;">
-		<div id="afroKart"></div>
+	<div class="span4 hidden-phone" style="float:right;">
+		<h3 style="text-align:center;" >Country / <span id="country-name"></span></h3>
+	</div>
+
+	<!-- Mobile-Friendly -->
+	<div class="visible-phone">
+		<table style="height:300px; width:100%; text-align:center;"><tr>
+			<td style="vertical-align:middle;">
+				<h1>Mobile-friendly coming soon!</h1>
+				<p>- View This Site on Desktop or Tablet -</p>
+			</td>
+		</tr></table>
 	</div>
 
 </div>
@@ -28,7 +57,7 @@ index: active
 	$(function() {
 		var selectedCountry = null;
 
-		map = $K.map('#afroKart', 700, 700);
+		map = $K.map('#afroKart', 550, 550);
 
 		var setPathCol = function(path, selected, border){
 			path.realFill = path.svgPath.attrs.fill;
@@ -40,7 +69,7 @@ index: active
 			return setPathCol(path, col, border);
 		}
 
-		map.loadMap('maps/africa.svg', function(){
+		map.loadMap('maps/africa_500.svg', function(){
 			map.loadStyles('/css/map_styles.css', function() {
 				map.addLayer({
 					id: 'countries',
@@ -82,13 +111,6 @@ index: active
 
 			});
 
-			map.addLayer("graticule");
-			var layer = map.getLayer('graticule');
-			for(var i=0;i<layer.paths.length;i++){
-				var path = layer.paths[i];
-				path.svgPath.attr({'stroke-width': 1});
-				path.svgPath.attr({'stroke': '#c5c5c5'});
-			}
 		});
 	});
 </script>

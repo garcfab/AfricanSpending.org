@@ -6,3 +6,9 @@ Author: David Lemayian [http://www.davidlemayian.com]
 Company: Open Institute [http://www.openinstitute.com]
 
 */
+@media (min-width: 768px){
+	#afrokart_1{
+		background: rgb(245,245,245) url('/img/logo_31.png') no-repeat center left;
+		height: 500px;
+	}
+}
