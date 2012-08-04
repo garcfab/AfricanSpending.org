@@ -75,7 +75,8 @@ OpenSpending.Styles.Cofog = {
 	'06.3': { icon: 'icons/water.svg' },
 	'06.4': { icon: 'icons/street-lights.svg' },
 	
-	'07': { icon: 'icons/health.svg', color: '#4E6D00' },											'07.1': { icon: 'icons/medical-supplies.svg' },				
+	'07': { icon: 'icons/health.svg', color: '#4E6D00' },
+	'07.1': { icon: 'icons/medical-supplies.svg' },				
 	'07.1.1': { icon: 'icons/medical-supplies.svg' },				
 	'07.1.2': { icon: 'icons/other-medical-products.svg' },				
 	'07.1.3': { icon: 'icons/wheelchair.svg' },		

@@ -92,35 +92,35 @@ section: home
 		
 		<!-- Daily Bread -->
 		<script>
-	    (function ($) {
-	      $(function () {
-	        var db = new OpenSpending.DailyBread($('#dailybread'),
-	          {
-	            minIncome: 240000,
-	            maxIncome: 6000000,
-	            defaultIncome:  600000,
-	            currency: 'KSH',
-	            taxmanApi: 'http://taxman.openspending.org/za'
-	          });
-	        new OpenSpending.Aggregator({
-	              apiUrl: 'http://openspending.org/api',
-	              //localApiCache: 'aggregate.json',
-	              dataset: 'kenya-budget-2012-13',
-	              drilldowns: ['category', 'sub_category_1', 'sub_category_2'],
-	              cuts: ['year:2012'],
-	              rootNodeLabel: 'Total',
-	              callback: function(data) {
-	                db.setDataFromAggregator(data, ['unknown']);
-	                db.setIconLookup(function(name) {
-	                  var style = OpenSpending.Styles.Cofog[name];
-	                  if (style != undefined) {
-	                    return style['icon'];
-	                  }
-	                  return 'icons/unknown.svg';
-	                });
-	                db.draw();
-	              }
-	            });
-	        })
-	      })(jQuery)
-	    </script>
+		(function ($) {
+			$(function () {
+				var db = new OpenSpending.DailyBread($('#dailybread'),
+					{
+						minIncome: 240000,
+						maxIncome: 6000000,
+						defaultIncome:  600000,
+						currency: 'KSH',
+						taxmanApi: 'http://taxman.openspending.org/za'
+					});
+				new OpenSpending.Aggregator({
+					apiUrl: 'http://openspending.org/api',
+					//localApiCache: 'aggregate.json',
+					dataset: 'kenya-budget-2012-13',
+					drilldowns: ['category', 'sub_category_1', 'sub_category_2'],
+					cuts: ['year:2012'],
+					rootNodeLabel: 'Total',
+					callback: function(data) {
+						db.setDataFromAggregator(data, ['unknown']);
+						db.setIconLookup(function(name) {
+							var style = OpenSpending.Styles.Cofog[name];
+							if (style != undefined) {
+								return style['icon'];
+							}
+							return 'icons/unknown.svg';
+						});
+						db.draw();
+					}
+				});
+			})
+		})(jQuery)
+		</script>

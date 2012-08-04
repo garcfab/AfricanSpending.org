@@ -61,7 +61,7 @@
 #db-topbar div p {
 	margin: 0;
 	padding: 0;
-	color: #830242;
+	color: #08C;
 	font-size: 1.5em;
 	font-weight: bold;
 }
@@ -87,12 +87,12 @@
 
 .wdmmg-slider.ui-widget-content {
 	background: none;
-	background-color: #830242;
+	background-color: #08C;
 	height: 6px;
 }
 
 .wdmmg-slider.ui-slider-horizontal .ui-slider-handle {
-	background: url('../img/pound-slider.png') transparent no-repeat;
+	background: url('/img/pound-slider.png') transparent no-repeat;
 	height: 17px;
 	width: 17px;
 	border: none;
