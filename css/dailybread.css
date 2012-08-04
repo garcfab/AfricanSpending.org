@@ -61,7 +61,7 @@
 #db-topbar div p {
 	margin: 0;
 	padding: 0;
-	color: #08C;
+	color: #3A87AD;
 	font-size: 1.5em;
 	font-weight: bold;
 }
@@ -87,7 +87,7 @@
 
 .wdmmg-slider.ui-widget-content {
 	background: none;
-	background-color: #08C;
+	background-color: #3A87AD;
 	height: 6px;
 }
 

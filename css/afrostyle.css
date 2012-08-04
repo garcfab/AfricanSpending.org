@@ -16,3 +16,13 @@ Company: Open Institute [http://www.openinstitute.com]
 #afrokart_1{
 	height: 500px;
 }
+
+a {
+	color: #3A87AD;
+	text-decoration: none;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+	color: white;
+	background-color: #3A87AD;
+}
