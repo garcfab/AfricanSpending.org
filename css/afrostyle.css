@@ -1,28 +1,53 @@
 /*
 
-Bootstrap Overides
+African Spending Main Stylesheet
 
-Author: David Lemayian [http://www.davidlemayian.com]
-Company: Open Institute [http://www.openinstitute.com]
+Overides:
+	> css/bootstrap.css
+	> css/bootstrap.min.css
+	
+Imports:
+	
+
+Company:
+	Name: Open Institute
+	URL: http://www.openinstitute.com
+
+Author:
+	Name: David Lemayian
+	URL: http://www.davidlemayian.com
+	Twitter: @DavidLemayian
 
 */
-@media (min-width: 980px){
-	#afrokart_1{
-		background: rgb(245,245,245) url('/img/logo_31.png') no-repeat center left;
-		height: 500px;
-	}
-}
 
-#afrokart_1{
-	height: 500px;
-}
+/* Default Tags */
 
 a {
 	color: #3A87AD;
 	text-decoration: none;
 }
 
+/* Navigation bar & Header */
+
+#social-nav{
+	font-weight:bold;
+}
+
+/* Main Layout */
+
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
 	color: white;
 	background-color: #3A87AD;
+}
+
+#afrokart_1{
+	height: 500px;
+}
+
+/* Responsive - Tablets and Desktops */
+@media (min-width: 980px){
+	#afrokart_1{
+		background: rgb(245,245,245) url('/img/logo_31.png') no-repeat center left;
+		height: 500px;
+	}
 }
