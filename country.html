@@ -9,11 +9,97 @@ section: home
 	<h2>Country / <span id="country-name">Kenya</span> <small></small></h2>
 </div>
 
-<div>
+<div class="row">
+	<div class="span3 well">
+		<div id="countryMap"></div>
+		<div style="display:none"><div id="countryKart"></div></div>
+		<p><b>Expenditure 09/10:</b> 800b</p>
+		<p><b>Budget 10/11:</b> 1,070b</p>
+		<p><b>Population:</b> 60m</p>
+	</div>
+	<div class="span6"></div>
 </div>
 
 <!-- Scripts -->
 
+<script type="text/javascript"
+  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCSDQUlPMNEPpH7HaRTsea-MXK1tUsD2b4&sensor=false">
+</script>
+<script type="text/javascript">
+	var geocoder;
+	var map;
+	
+	geocoder = new google.maps.Geocoder();
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var mapOptions = {
+		zoom: 8,
+		center: latlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	map = new google.maps.Map(document.getElementById('countryMap'), mapOptions);
+	
+	var address = "Kenya";
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location
+			});
+		} else {
+			alert('Geocode was not successful for the following reason: ' + status);
+		}
+	});
+
+	/*
+	*/
+		
+</script>
+
+<script src="js/kartograph.min.js"></script>
+<script src="/js/raphael.js"></script>
+<script src="js/jquery.qtip.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		
+		map = $K.map('#countryKart', 300, 300);
+
+		map.loadMap('maps/africa_500.svg', function(){
+			map.loadStyles('/css/map_styles.css', function() {	
+				map.addLayer({
+					id: 'countries',
+					key: 'code',
+				});
+				
+				
+
+				var layer = map.getLayer('countries');
+				
+				for(var i=0;i<layer.paths.length;i++){
+					var path = layer.paths[i];
+					path.svgPath.attr({'stroke-width': 0});
+					path.svgPath.attr({'stroke': '#fff'});
+				}
+				
+				var path = layer.paths[20];
+				
+				path.svgPath.attr({'fill': '#999'});
+				path.svgPath.attr({'stroke-width': 1});
+				path.svgPath.attr({'stroke': '#fff'});
+
+			});
+
+		});
+	});
+</script>
+
+<script>
+	(function ($) {
+		window.qTipConfig = { style: { name: 'light', tip: true },
+			position: { corner: { target: 'bottomMiddle', tooltip: 'topMiddle' }}};
+		$('a[title]').qtip(qTipConfig);
+	}(jQuery));
+</script>
 
 
-<!-- Vendor Scripts -->
