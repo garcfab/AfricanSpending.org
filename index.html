@@ -15,8 +15,11 @@ index: active
 	<!-- /: Map -->
 	
 	<!-- RightSideBar Country Data -->
-	<div class="span4 hidden-phone" style="float:right;">
-		<h3 style="text-align:center; line-height: 100%;" >Country / <span id="country-name"></span></h3>
+	<div class="span4 hidden-phone" style="float:right; text-align:center;">
+		<h3 style="line-height: 100%;" >Country / <span id="country-name"><small>Please Select A Country From the Map</small></span></h3>
+		<div id="country-content">
+			<a href="#" class="btn btn-mini btn-info disabled" rel="tooltip" title="Please select a country from the map first."> Go To Country Page </a>
+		</div>
 	</div>
 	<!-- /: RightSideBar Country Data -->
 
@@ -79,12 +82,17 @@ index: active
 				});
 
 				map.onLayerEvent('click', function(data) {
+					var country_content;
 					document.getElementById("country-name").innerHTML=data.country;
+					
 					if (selectedCountry!=null){
 						var path = setCountryCol(selectedCountry, false, false);
 						path.svgPath.attr({'stroke-width': 1});
 					}
 					selectedCountry = data.country;
+					
+					country_content = '<a href="/country.html?#'+data.code+'" class="btn btn-mini btn-info"> Go To Country Page </a>';
+					document.getElementById("country-content").innerHTML=country_content;
 				});
 				map.onLayerEvent('mouseover', function(data) {
 					setCountryCol(data.country, true, false);
