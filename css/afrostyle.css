@@ -33,6 +33,10 @@ a {
 	font-weight:bold;
 	font-size:20px;
 }
+	#social-nav #mob{
+		display:inline-block;
+		font-size:12px;
+	}
 
 /* Main Layout */
 
