@@ -6,34 +6,19 @@ index: active
 ---
 
 <div class="well" id="afrokart_1">
+	<!-- Map -->
 	<div class="row">
-		<div class="span4" style="text-align:center; float:right;">
-			<p class="lead" >A great tool to keep track of government finances all around Africa.
-			<a class="btn" data-toggle="modal" href="#howtouse">How To Use</a></p>
-		</div>
-
-		<!-- How To Use -->
-		<div class="modal hide fade" id="howtouse">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>How To Use</h3>
-			</div>
-			<div class="modal-body">
-				<p>Umm... Have fun and try not break anything..? :)</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-			</div>
-		</div>
-
 		<div class="span7 hidden-phone" style="position:relative; top:-20px; right:-130px;">
 			<div id="afroKart" style="display:inline-block;"></div>
 		</div>
 	</div>
-
+	<!-- /: Map -->
+	
+	<!-- RightSideBar Country Data -->
 	<div class="span4 hidden-phone" style="float:right;">
 		<h3 style="text-align:center;" >Country / <span id="country-name"></span></h3>
 	</div>
+	<!-- /: RightSideBar Country Data -->
 
 	<!-- Mobile-Friendly -->
 	<div class="visible-phone">
@@ -44,8 +29,11 @@ index: active
 			</td>
 		</tr></table>
 	</div>
+	<!-- /: Mobile-Friendly -->
 
 </div>
+
+<!-- Scripts at End -->
 
 <script src="js/kartograph.min.js"></script>
 <script src="/js/raphael.js"></script>
