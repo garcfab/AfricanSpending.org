@@ -4,18 +4,3 @@ auto: true
 title: African Spending
 openspendingjs: '/js/openspendingjs'
 url: http://africanspending.org
-
-author :
-  name : David Lemayian
-  email : david@openinstitute.com
-  github : http://github.com/DavidLemayian
-  twitter : @DavidLemayian
-
-# Settings for analytics helper
-# Set 'provider' to the analytics provider you want to use.
-# Set 'provider' to false to turn analytics off globally.
-#        
-analytics :
-  provider : google
-  google : 
-      tracking_id : 'UA-32175814-1'
