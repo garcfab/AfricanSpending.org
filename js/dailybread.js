@@ -93,7 +93,7 @@ OpenSpending.DailyBread = function (elem, options) {
     self.salaryVal = salary;
     $.ajax({
       url: self.options.taxmanApi,
-      data: {income: salary},
+      data: {income: salary, year: 2012},
       cache: true,
       dataType: 'jsonp',
       jsonpCallback: 'taxman_' + salary,
